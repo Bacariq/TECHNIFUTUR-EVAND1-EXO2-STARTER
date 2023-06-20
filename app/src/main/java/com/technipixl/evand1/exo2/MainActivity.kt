@@ -13,6 +13,7 @@ import java.lang.NumberFormatException
 
 fun isMailValide(login:String):Boolean{
     val regex = Regex("^[^\\d].*")
+    //^[^0-9][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
     if (!regex.matches(login)) {return false}
     if(login.indexOf("@") < 0) {return false;}
     if(login.isNullOrEmpty() == true) {return false;}
