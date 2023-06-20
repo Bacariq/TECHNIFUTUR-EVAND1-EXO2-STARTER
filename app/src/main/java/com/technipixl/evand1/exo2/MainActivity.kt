@@ -11,11 +11,11 @@ import android.widget.EditText
 import java.lang.Exception
 import java.lang.NumberFormatException
 
-fun isMailValide(mail:String, password: String):Boolean{
+fun isMailValide(login:String):Boolean{
     val regex = Regex("^[^\\d].*")
-    if( regex.matches(mail) == true) {return false;}
-    if(mail.indexOf("@") < 0) {return false;}
-    if(password.isNullOrEmpty() == true) {return false;}
+    if (!regex.matches(login)) {return false}
+    if(login.indexOf("@") < 0) {return false;}
+    if(login.isNullOrEmpty() == true) {return false;}
     return true;
 }
 
@@ -60,6 +60,7 @@ class MainActivity : Activity(), View.OnClickListener {
 
     private fun isLoginValid(login: String): Boolean {
 
+        if(login.isNullOrEmpty() == true) {return false;}
         val firstCharacter = login.substring(0, 1)
         var value = 0
         try {
@@ -67,12 +68,7 @@ class MainActivity : Activity(), View.OnClickListener {
             return false
         }catch (ex : NumberFormatException) {
         }
-        /*
-        val convertedValue = Integer.toString(value)
-        if (firstCharacter.compareTo(convertedValue) != 0) {
-            return false
-        }
-        */
+
         return login.contains("@")
     }
 }
